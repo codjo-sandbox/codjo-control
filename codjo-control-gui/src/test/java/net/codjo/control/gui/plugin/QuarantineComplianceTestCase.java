@@ -1,16 +1,16 @@
 package net.codjo.control.gui.plugin;
-import net.codjo.agent.UserId;
-import net.codjo.control.gui.data.QuarantineGuiData;
-import net.codjo.control.gui.data.QuarantineGuiDataList;
-import net.codjo.mad.common.structure.StructureReader;
-import net.codjo.mad.common.structure.TableStructure;
-import net.codjo.mad.common.structure.DefaultStructureReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import junit.framework.TestCase;
+import net.codjo.agent.UserId;
+import net.codjo.control.gui.data.QuarantineGuiData;
+import net.codjo.control.gui.data.QuarantineGuiDataList;
+import net.codjo.mad.common.structure.DefaultStructureReader;
+import net.codjo.mad.common.structure.StructureReader;
+import net.codjo.mad.common.structure.TableStructure;
 /**
  */
 public abstract class QuarantineComplianceTestCase extends TestCase {
@@ -31,7 +31,7 @@ public abstract class QuarantineComplianceTestCase extends TestCase {
 
     public void test_integrity() throws Exception {
         QuarantineManager manager = new QuarantineManager(getClass().getResource(quarantineResource),
-                                                          UserId.createId("user_dev", "samsung"));
+                                                          UserId.createId("s_focs_dev", "samsung"));
         QuarantineGuiDataList list = manager.getList();
 
         File structure = new File(getClass().getResource(structureResource).getFile());
