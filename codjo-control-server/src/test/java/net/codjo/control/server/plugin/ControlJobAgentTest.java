@@ -4,19 +4,35 @@
  * Common Apache License 2.0
  */
 package net.codjo.control.server.plugin;
+
 import net.codjo.agent.AclMessage;
 import net.codjo.control.common.message.ControlJobRequest;
+import net.codjo.control.server.i18n.InternationalizationFixture;
 import net.codjo.test.common.LogString;
 import net.codjo.workflow.common.message.JobAudit;
 import net.codjo.workflow.server.api.JobAgent;
 import net.codjo.workflow.server.api.JobAgent.MODE;
 import net.codjo.workflow.server.api.JobAgentTestCase;
+
 /**
  *
  */
 public class ControlJobAgentTest extends JobAgentTestCase {
     private ControlerFactoryMock controlFactory;
 
+    private final InternationalizationFixture i18nFixture = new InternationalizationFixture();
+
+    @Override
+    protected void doSetUp() throws Exception {
+        super.doSetUp();
+        i18nFixture.doSetUp();
+    }
+
+    @Override
+    protected void doTearDown() throws Exception {
+        i18nFixture.doTearDown();
+        super.doTearDown();
+    }
 
     public void test_control() throws Exception {
         record().startJobAgent(createJobAgent());

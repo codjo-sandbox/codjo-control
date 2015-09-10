@@ -4,17 +4,13 @@
  * Common Apache License 2.0
  */
 package net.codjo.control.common.loader;
-import net.codjo.control.common.Dictionary;
-import net.codjo.control.common.Entity;
-import net.codjo.control.common.IntegrationPlan;
-import net.codjo.control.common.Plan;
-import net.codjo.control.common.PlansList;
-import net.codjo.control.common.Shipment;
-import net.codjo.control.common.Step;
-import net.codjo.control.common.Variable;
-import java.util.Collection;
-import java.util.Iterator;
+
 import junit.framework.TestCase;
+import net.codjo.control.common.Dictionary;
+import net.codjo.control.common.*;
+
+import java.util.*;
+
 /**
  * DOCUMENT ME!
  *
@@ -45,7 +41,13 @@ public class IntegrationPlanMappingTest extends TestCase {
 
         // ################# TEST DICTIONARY ########################
         assertEquals(3, ctrl.getDictionary().getVariables().size());
-        Variable var = (Variable)ctrl.getDictionary().getVariables().toArray()[0];
+        List<Variable> variables = new ArrayList<Variable>(ctrl.getDictionary().getVariables());
+        Collections.sort(variables, new Comparator<Variable>() {
+            public int compare(Variable o1, Variable o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        Variable var = variables.get(1);
         assertEquals("control.table", var.getName());
         assertEquals("#CTRL_TMP_VL", var.getValue());
 
